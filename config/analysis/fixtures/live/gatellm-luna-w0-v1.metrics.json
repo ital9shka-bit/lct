@@ -1,0 +1,13 @@
+{
+  "provider": "gatellm",
+  "model": "openai/gpt-5.6-luna",
+  "api_style": "chat_completions",
+  "request_id": "gen-1789821321-v1ePiZYs0rdD2ibiJC8Q",
+  "duration_ms": 13463,
+  "input_tokens": 4144,
+  "output_tokens": 2017,
+  "total_tokens": 6161,
+  "estimated_cost": 0.00345625,
+  "cost_currency": "USD",
+  "cost_source": "provider_response"
+}

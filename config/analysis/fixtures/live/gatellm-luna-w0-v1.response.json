@@ -1,0 +1,252 @@
+{
+  "camera_observations": [
+    {
+      "camera_id": "CAM-01",
+      "image_id": "IMG-W0-NORTH",
+      "quality": "good",
+      "limitations": [],
+      "equipment": [
+        {
+          "type": "excavator",
+          "count": 1,
+          "confidence": 0.99,
+          "description": "Гусеничный экскаватор работает в открытом котловане"
+        },
+        {
+          "type": "tower_crane",
+          "count": 2,
+          "confidence": 0.87,
+          "description": "Видны мачты и стрелы башенных кранов на площадке"
+        }
+      ],
+      "scene_facts": [
+        {
+          "feature_code": "open_excavation",
+          "state": "present",
+          "confidence": 0.99,
+          "description": "На переднем плане отчётливо виден открытый котлован с обнажённым грунтом и откосами"
+        },
+        {
+          "feature_code": "active_digging_or_loading",
+          "state": "present",
+          "confidence": 0.98,
+          "description": "Экскаватор выполняет работы внутри котлована"
+        },
+        {
+          "feature_code": "fresh_earth_displacement",
+          "state": "present",
+          "confidence": 0.98,
+          "description": "Видны свежие следы разработки, отвалы и рабочие проходы техники"
+        },
+        {
+          "feature_code": "excavator_in_excavation_zone",
+          "state": "present",
+          "confidence": 0.99,
+          "description": "Экскаватор расположен непосредственно в зоне земляных работ"
+        },
+        {
+          "feature_code": "soil_stockpiles",
+          "state": "present",
+          "confidence": 0.92,
+          "description": "В котловане и вокруг него видны отвалы и перемещённый грунт"
+        },
+        {
+          "feature_code": "haul_route_in_excavation_zone",
+          "state": "present",
+          "confidence": 0.9,
+          "description": "Видны технологические проезды по площадке и в зоне котлована"
+        },
+        {
+          "feature_code": "tower_crane_mast_and_jib_installed",
+          "state": "present",
+          "confidence": 0.87,
+          "description": "На заднем плане видны собранные башенные краны с мачтами и стрелами"
+        }
+      ]
+    },
+    {
+      "camera_id": "CAM-02",
+      "image_id": "IMG-W0-ENTRANCE",
+      "quality": "good",
+      "limitations": [],
+      "equipment": [
+        {
+          "type": "tower_crane",
+          "count": 4,
+          "confidence": 0.91,
+          "description": "Видны четыре башенных крана с установленными мачтами и стрелами"
+        },
+        {
+          "type": "dump_truck",
+          "count": 1,
+          "confidence": 0.94,
+          "description": "Самосвал находится на внутреннем проезде площадки"
+        }
+      ],
+      "scene_facts": [
+        {
+          "feature_code": "tower_crane_mast_and_jib_installed",
+          "state": "present",
+          "confidence": 0.94,
+          "description": "Во внутренней части площадки отчётливо видны собранные мачты и стрелы нескольких башенных кранов"
+        },
+        {
+          "feature_code": "tower_crane_assembly_activity",
+          "state": "uncertain",
+          "confidence": 0.48,
+          "description": "Отдельные операции сборки или наращивания крана на снимке не различимы"
+        },
+        {
+          "feature_code": "crane_sections_staged",
+          "state": "uncertain",
+          "confidence": 0.45,
+          "description": "Материалы на площадке видны, но секции башенного крана однозначно не идентифицируются"
+        }
+      ]
+    },
+    {
+      "camera_id": "CAM-03",
+      "image_id": "IMG-W0-OVERVIEW",
+      "quality": "good",
+      "limitations": [],
+      "equipment": [
+        {
+          "type": "excavator",
+          "count": 1,
+          "confidence": 0.99,
+          "description": "Гусеничный экскаватор работает в котловане на переднем плане"
+        },
+        {
+          "type": "tower_crane",
+          "count": 3,
+          "confidence": 0.89,
+          "description": "Видны три башенных крана с мачтами и стрелами"
+        }
+      ],
+      "scene_facts": [
+        {
+          "feature_code": "open_excavation",
+          "state": "present",
+          "confidence": 0.99,
+          "description": "На переднем плане отчётливо виден крупный открытый котлован с откосами"
+        },
+        {
+          "feature_code": "active_digging_or_loading",
+          "state": "present",
+          "confidence": 0.97,
+          "description": "Экскаватор находится в котловане и выполняет земляные работы"
+        },
+        {
+          "feature_code": "fresh_earth_displacement",
+          "state": "present",
+          "confidence": 0.98,
+          "description": "Видны свежая разработка грунта, отвалы и следы движения техники"
+        },
+        {
+          "feature_code": "excavator_in_excavation_zone",
+          "state": "present",
+          "confidence": 0.99,
+          "description": "Экскаватор расположен внутри зоны котлована"
+        },
+        {
+          "feature_code": "soil_stockpiles",
+          "state": "present",
+          "confidence": 0.93,
+          "description": "В котловане и на прилегающей территории видны отвалы вынутого грунта"
+        },
+        {
+          "feature_code": "haul_route_in_excavation_zone",
+          "state": "present",
+          "confidence": 0.9,
+          "description": "Видны технологические проезды в зоне котлована"
+        },
+        {
+          "feature_code": "tower_crane_mast_and_jib_installed",
+          "state": "present",
+          "confidence": 0.93,
+          "description": "На общем плане отчётливо видны собранные башенные краны с установленными стрелами"
+        }
+      ]
+    }
+  ],
+  "stage_evidence": [
+    {
+      "plan_item_id": "PLAN-NORTH-EXCAVATION",
+      "status": "positive",
+      "confidence": 0.99,
+      "evidence_item_ids": [
+        "EV-EXC-01",
+        "EV-EXC-02"
+      ],
+      "explanation": "На CAM-01 и CAM-03 одновременно видны открытый котлован, свежая разработка грунта и работающий в котловане экскаватор.",
+      "limitations": []
+    },
+    {
+      "plan_item_id": "PLAN-NORTH-CRANE",
+      "status": "positive",
+      "confidence": 0.94,
+      "evidence_item_ids": [
+        "EV-CRANE-01",
+        "EV-CRANE-02"
+      ],
+      "explanation": "На CAM-02 и CAM-03 отчётливо видны собранные башенные краны с мачтами и стрелами; общий контекст площадки подтверждает наличие этапа монтажа/установки кранов.",
+      "limitations": [
+        "Фактические операции сборки или наращивания на снимках не наблюдаются."
+      ]
+    },
+    {
+      "plan_item_id": "PLAN-NORTH-UTILITIES",
+      "status": "not_observable",
+      "confidence": 1,
+      "evidence_item_ids": [],
+      "explanation": "Этап имеет confirmation_method=inspection и observability=no; по представленным камерам внутренние инженерные сети не оцениваются.",
+      "limitations": [
+        "Требуется инспекционное подтверждение."
+      ]
+    }
+  ],
+  "evidence_items": [
+    {
+      "evidence_id": "EV-EXC-01",
+      "plan_item_id": "PLAN-NORTH-EXCAVATION",
+      "feature_code": "open_excavation",
+      "camera_id": "CAM-01",
+      "image_id": "IMG-W0-NORTH",
+      "polarity": "positive",
+      "confidence": 0.99,
+      "description": "Открытый котлован с обнажённым грунтом и откосами занимает передний план."
+    },
+    {
+      "evidence_id": "EV-EXC-02",
+      "plan_item_id": "PLAN-NORTH-EXCAVATION",
+      "feature_code": "active_digging_or_loading",
+      "camera_id": "CAM-03",
+      "image_id": "IMG-W0-OVERVIEW",
+      "polarity": "positive",
+      "confidence": 0.97,
+      "description": "Экскаватор выполняет работы внутри открытого котлована; видны свежие следы разработки."
+    },
+    {
+      "evidence_id": "EV-CRANE-01",
+      "plan_item_id": "PLAN-NORTH-CRANE",
+      "feature_code": "tower_crane_mast_and_jib_installed",
+      "camera_id": "CAM-02",
+      "image_id": "IMG-W0-ENTRANCE",
+      "polarity": "positive",
+      "confidence": 0.94,
+      "description": "На площадке видны несколько собранных башенных кранов с мачтами и стрелами."
+    },
+    {
+      "evidence_id": "EV-CRANE-02",
+      "plan_item_id": "PLAN-NORTH-CRANE",
+      "feature_code": "tower_crane_mast_and_jib_installed",
+      "camera_id": "CAM-03",
+      "image_id": "IMG-W0-OVERVIEW",
+      "polarity": "positive",
+      "confidence": 0.93,
+      "description": "Общий план показывает установленные башенные краны в контексте строительной площадки."
+    }
+  ],
+  "unexpected_evidence": [],
+  "analysis_summary": "По представленным изображениям положительно подтверждаются разработка котлована и наличие установленных башенных кранов. Внутренние инженерные сети по камерам не наблюдаемы и требуют инспекционного подтверждения."
+}

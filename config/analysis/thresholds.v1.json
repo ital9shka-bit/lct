@@ -1,0 +1,32 @@
+{
+  "version": "w0-thresholds-v1",
+  "status": "confirmed_by_live_run",
+  "confirmed_at": "2026-09-19T12:35:34Z",
+  "confirmation_run": "artifacts/w0-runs/20260919T123520Z",
+  "provider": "gatellm",
+  "model": "openai/gpt-5.6-luna",
+  "prompt_version": "construction-analysis-v1",
+  "model_evidence": {
+    "positive_confidence": 0.72,
+    "explicit_absence_confidence": 0.7,
+    "unexpected_evidence_confidence": 0.75,
+    "usable_camera_quality": ["good", "acceptable"],
+    "below_threshold_result": "insufficient_coverage"
+  },
+  "daily_assessment": {
+    "positive_independent_intervals": 2,
+    "absence_usable_intervals": 3,
+    "duplicate_image_hashes_are_independent": false
+  },
+  "observed_separation": {
+    "positive_evidence_confidence_min": 0.93,
+    "uncertain_scene_fact_confidence_max": 0.48
+  },
+  "notes": [
+    "Порог модели применяется к свидетельству, а не напрямую к дневному статусу.",
+    "Одна единица техники без сильного признака сцены не подтверждает земляные работы.",
+    "На живом W0-прогоне положительные свидетельства получили 0.93–0.99, а неоднозначные признаки сборки крана 0.45–0.48.",
+    "Порог явного отсутствия зафиксирован консервативно; отдельный отрицательный набор добавляется при подготовке тестов W3/W4."
+  ]
+}
+

@@ -1,0 +1,114 @@
+name: stroykontrol
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: stroykontrol
+      POSTGRES_USER: stroykontrol
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-stroykontrol-local}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U stroykontrol -d stroykontrol"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  minio:
+    image: quay.io/minio/minio:RELEASE.2025-07-23T15-54-02Z
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-stroykontrol-root}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-stroykontrol-root-local}
+    volumes:
+      - minio-data:/data
+    ports:
+      - "9100:9000"
+      - "9101:9001"
+
+  minio-init:
+    image: quay.io/minio/mc:RELEASE.2025-07-21T05-28-08Z
+    depends_on:
+      minio:
+        condition: service_started
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-stroykontrol-root}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-stroykontrol-root-local}
+      MINIO_APP_ACCESS_KEY: ${S3_ACCESS_KEY:-stroykontrol-app}
+      MINIO_APP_SECRET_KEY: ${S3_SECRET_KEY:-stroykontrol-app-local}
+    volumes:
+      - ./deploy/minio-policy.json:/config/minio-policy.json:ro
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -eu
+        until mc alias set local http://minio:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}"; do sleep 1; done
+        mc mb --ignore-existing local/stroykontrol-dev
+        mc anonymous set none local/stroykontrol-dev
+        mc admin user add local "$${MINIO_APP_ACCESS_KEY}" "$${MINIO_APP_SECRET_KEY}" || true
+        mc admin policy create local stroykontrol-prefix /config/minio-policy.json || mc admin policy update local stroykontrol-prefix /config/minio-policy.json
+        mc admin policy attach local stroykontrol-prefix --user "$${MINIO_APP_ACCESS_KEY}"
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      ENVIRONMENT: development
+      DATABASE_URL: postgresql+psycopg://stroykontrol:${POSTGRES_PASSWORD:-stroykontrol-local}@postgres:5432/stroykontrol
+      FRONTEND_ORIGINS: http://127.0.0.1:8180,http://localhost:8180
+      SESSION_COOKIE_SECURE: "false"
+      DEMO_LOGIN: demo
+      DEMO_PASSWORD: demo
+      DEMO_EMAIL: demo@demo.stroykontrol.ru
+      DEMO_PERIOD_START: ${DEMO_PERIOD_START:-2026-09-29}
+      DEMO_PERIOD_END: ${DEMO_PERIOD_END:-2026-10-15}
+      S3_ENABLED: "true"
+      S3_ENDPOINT: http://minio:9000
+      S3_PRESIGN_ENDPOINT: http://127.0.0.1:9100
+      S3_BUCKET: stroykontrol-dev
+      S3_PREFIX: stroykontrol
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:-stroykontrol-app}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:-stroykontrol-app-local}
+      MAIL_ENABLED: ${MAIL_ENABLED:-false}
+      RUSENDER_API_KEY: ${RUSENDER_API_KEY:-}
+      RUSENDER_KEY_ID: ${RUSENDER_KEY_ID:-}
+      MAIL_FROM: ${MAIL_FROM:-}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-СтройКонтроль}
+      MAIL_LOGIN_URL: ${MAIL_LOGIN_URL:-http://127.0.0.1:8180/#/login}
+      MAIL_TECHNICAL_DOMAIN_NOTE: ${MAIL_TECHNICAL_DOMAIN_NOTE:-}
+      AI_PROVIDER: ${AI_PROVIDER:-gatellm}
+      AI_BASE_URL: ${AI_BASE_URL:-https://gatellm.ru/v1}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_MODEL: ${AI_MODEL:-openai/gpt-6-luna}
+      AI_API_STYLE: ${AI_API_STYLE:-chat_completions}
+      AI_REASONING_EFFORT: ${AI_REASONING_EFFORT:-low}
+      AI_TIMEOUT_SECONDS: ${AI_TIMEOUT_SECONDS:-90}
+      AI_ATTEMPTS_PER_MODEL: ${AI_ATTEMPTS_PER_MODEL:-2}
+      AI_FALLBACK_MODEL: ${AI_FALLBACK_MODEL-x-ai/grok-4.7}
+      AI_FALLBACK_PROVIDER: ${AI_FALLBACK_PROVIDER:-}
+      AI_FALLBACK_BASE_URL: ${AI_FALLBACK_BASE_URL:-}
+      AI_FALLBACK_API_KEY: ${AI_FALLBACK_API_KEY:-}
+      AI_FALLBACK_API_STYLE: ${AI_FALLBACK_API_STYLE:-}
+      AI_FALLBACK_REASONING_EFFORT: ${AI_FALLBACK_REASONING_EFFORT:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+    expose:
+      - "8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: prototype/Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "8180:80"
+
+volumes:
+  postgres-data:
+  minio-data:

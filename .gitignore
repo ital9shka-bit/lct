@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+!.env.prod.example
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+prototype/node_modules/
+prototype/dist/
+prototype/qa/
+qa/e2e/.work/
+qa/e2e/out/
+*.log

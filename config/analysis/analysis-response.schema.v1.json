@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stroykontrol.local/schemas/analysis-response.v1.json",
+  "title": "StroyKontrol construction image analysis",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "camera_observations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/camera_observation" }
+    },
+    "stage_evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/stage_evidence" }
+    },
+    "evidence_items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence_item" }
+    },
+    "unexpected_evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/unexpected_evidence_item" }
+    },
+    "analysis_summary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "camera_observations",
+    "stage_evidence",
+    "evidence_items",
+    "unexpected_evidence",
+    "analysis_summary"
+  ],
+  "$defs": {
+    "equipment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string" },
+        "count": { "type": "integer", "minimum": 1 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "description": { "type": "string" }
+      },
+      "required": ["type", "count", "confidence", "description"]
+    },
+    "scene_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "feature_code": { "type": "string" },
+        "state": {
+          "type": "string",
+          "enum": ["present", "absent", "uncertain"]
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "description": { "type": "string" }
+      },
+      "required": ["feature_code", "state", "confidence", "description"]
+    },
+    "camera_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "camera_id": { "type": "string" },
+        "image_id": { "type": "string" },
+        "quality": {
+          "type": "string",
+          "enum": ["good", "acceptable", "poor", "unreadable"]
+        },
+        "limitations": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "equipment": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/equipment" }
+        },
+        "scene_facts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/scene_fact" }
+        }
+      },
+      "required": [
+        "camera_id",
+        "image_id",
+        "quality",
+        "limitations",
+        "equipment",
+        "scene_facts"
+      ]
+    },
+    "stage_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "plan_item_id": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": [
+            "positive",
+            "neutral",
+            "conflict",
+            "not_observable",
+            "insufficient_coverage"
+          ]
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "evidence_item_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "explanation": { "type": "string" },
+        "limitations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": [
+        "plan_item_id",
+        "status",
+        "confidence",
+        "evidence_item_ids",
+        "explanation",
+        "limitations"
+      ]
+    },
+    "evidence_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": { "type": "string" },
+        "plan_item_id": { "type": "string" },
+        "feature_code": { "type": "string" },
+        "camera_id": { "type": "string" },
+        "image_id": { "type": "string" },
+        "polarity": {
+          "type": "string",
+          "enum": ["positive", "neutral", "conflict"]
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "description": { "type": "string" }
+      },
+      "required": [
+        "evidence_id",
+        "plan_item_id",
+        "feature_code",
+        "camera_id",
+        "image_id",
+        "polarity",
+        "confidence",
+        "description"
+      ]
+    },
+    "unexpected_evidence_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "feature_code": { "type": "string" },
+        "camera_id": { "type": "string" },
+        "image_id": { "type": "string" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "description": { "type": "string" }
+      },
+      "required": [
+        "feature_code",
+        "camera_id",
+        "image_id",
+        "confidence",
+        "description"
+      ]
+    }
+  }
+}
+

@@ -1,0 +1,98 @@
+{
+  "catalog_version": "w0-catalog-v1",
+  "object_types": [
+    { "code": "residential_complex", "name": "Жилой комплекс" },
+    { "code": "public_building", "name": "Общественное здание" },
+    { "code": "industrial_site", "name": "Промышленный объект" }
+  ],
+  "stages": [
+    {
+      "code": "excavation",
+      "name": "Разработка котлована",
+      "object_types": [
+        "residential_complex",
+        "public_building",
+        "industrial_site"
+      ],
+      "observability": "yes",
+      "confirmation_method": "cameras",
+      "visual_class": "earthworks",
+      "profile": {
+        "strong_features": [
+          {
+            "code": "open_excavation",
+            "description": "Открытый котлован с обнажённым грунтом и откосами"
+          },
+          {
+            "code": "active_digging_or_loading",
+            "description": "Экскавация, выемка либо погрузка грунта в контексте котлована"
+          },
+          {
+            "code": "fresh_earth_displacement",
+            "description": "Свежие следы разработки грунта, отвалы и рабочие проходы техники"
+          }
+        ],
+        "additional_features": [
+          {
+            "code": "excavator_in_excavation_zone",
+            "description": "Экскаватор расположен внутри зоны земляных работ"
+          },
+          {
+            "code": "soil_stockpiles",
+            "description": "Отвалы или складирование вынутого грунта"
+          },
+          {
+            "code": "haul_route_in_excavation_zone",
+            "description": "Технологический проезд в зоне котлована"
+          }
+        ],
+        "typical_equipment": ["excavator", "dump_truck", "bulldozer"],
+        "minimum_equipment": 1,
+        "decision_note": "Одна единица техники без контекста сцены этап не подтверждает."
+      }
+    },
+    {
+      "code": "tower_crane_installation",
+      "name": "Монтаж башенного крана",
+      "object_types": ["residential_complex", "public_building"],
+      "observability": "partial",
+      "confirmation_method": "cameras",
+      "visual_class": "crane_installation",
+      "profile": {
+        "strong_features": [
+          {
+            "code": "tower_crane_mast_and_jib_installed",
+            "description": "Собранная мачта башенного крана с установленной стрелой"
+          },
+          {
+            "code": "tower_crane_assembly_activity",
+            "description": "Видимые операции по сборке или наращиванию башенного крана"
+          }
+        ],
+        "additional_features": [
+          {
+            "code": "crane_sections_staged",
+            "description": "Секции башенного крана подготовлены в зоне монтажа"
+          },
+          {
+            "code": "mobile_crane_supporting_assembly",
+            "description": "Автокран или гусеничный кран участвует в сборке"
+          }
+        ],
+        "typical_equipment": ["tower_crane", "mobile_crane"],
+        "minimum_equipment": 1,
+        "decision_note": "Отдельный далёкий силуэт крана без различимого ракурса даёт neutral."
+      }
+    },
+    {
+      "code": "internal_utilities",
+      "name": "Внутренние инженерные сети",
+      "object_types": ["residential_complex", "public_building"],
+      "observability": "no",
+      "confirmation_method": "inspection",
+      "visual_class": "not_externally_observable",
+      "profile": null
+    }
+  ]
+}
+

@@ -1,0 +1,82 @@
+{
+  "fixture_version": "w0-input-v1",
+  "catalog_path": "config/analysis/stage-catalog.v1.json",
+  "contract_version": "analysis-response-v1",
+  "prompt_version": "construction-analysis-v1",
+  "object": {
+    "id": "OBJ-NORTH",
+    "name": "ЖК Северный парк",
+    "object_type": "residential_complex",
+    "timezone": "Europe/Moscow",
+    "observed_at": "2026-09-19T12:00:00+03:00"
+  },
+  "cameras": [
+    {
+      "camera_id": "CAM-01",
+      "name": "Котлован",
+      "zone": "Северная сторона",
+      "view_description": "Котлован и северная граница площадки",
+      "coverage": ["котлован", "северная граница"]
+    },
+    {
+      "camera_id": "CAM-02",
+      "name": "Въезд",
+      "zone": "Ворота № 1",
+      "view_description": "Въездная группа и разгрузочная площадка",
+      "coverage": ["въезд", "проезд", "разгрузка"]
+    },
+    {
+      "camera_id": "CAM-03",
+      "name": "Общий план",
+      "zone": "Северо-восточная часть",
+      "view_description": "Общий вид котлована и корпуса 1",
+      "coverage": ["котлован", "корпус 1", "проезд"]
+    }
+  ],
+  "plan_items": [
+    {
+      "plan_item_id": "PLAN-NORTH-EXCAVATION",
+      "stage_code": "excavation",
+      "start_date": "2026-09-10",
+      "end_date": "2026-09-22",
+      "camera_ids": ["CAM-01", "CAM-03"]
+    },
+    {
+      "plan_item_id": "PLAN-NORTH-CRANE",
+      "stage_code": "tower_crane_installation",
+      "start_date": "2026-09-14",
+      "end_date": "2026-09-20",
+      "camera_ids": ["CAM-02", "CAM-03"]
+    },
+    {
+      "plan_item_id": "PLAN-NORTH-UTILITIES",
+      "stage_code": "internal_utilities",
+      "start_date": "2026-09-15",
+      "end_date": "2026-10-02",
+      "camera_ids": []
+    }
+  ],
+  "images": [
+    {
+      "image_id": "IMG-W0-NORTH",
+      "camera_id": "CAM-01",
+      "path": "prototype/public/assets/site-north.png",
+      "media_type": "image/png",
+      "sha256": "5ffd3d55d4c29dd12074dd2c4c6b54b325d93545f49e8f8f114f96d70ee04f15"
+    },
+    {
+      "image_id": "IMG-W0-ENTRANCE",
+      "camera_id": "CAM-02",
+      "path": "prototype/public/assets/site-entrance.png",
+      "media_type": "image/png",
+      "sha256": "cce77a2a93c1a94b17a7a7622844936ba23c5aa2c24f158627afcc8c9d253ef0"
+    },
+    {
+      "image_id": "IMG-W0-OVERVIEW",
+      "camera_id": "CAM-03",
+      "path": "prototype/public/assets/site-overview.png",
+      "media_type": "image/png",
+      "sha256": "8fa9315433572865788c43ed4c76318ed00f213971f64ea40a419682a72bca75"
+    }
+  ]
+}

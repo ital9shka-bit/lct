@@ -1,0 +1,2 @@
+"""StroyKontrol backend package."""
+
