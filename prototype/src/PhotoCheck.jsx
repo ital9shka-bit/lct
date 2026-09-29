@@ -305,8 +305,11 @@ export default function PhotoCheck({
               <IconPhoto size={22} />
               <div>
                 <strong>Примерные фото добавлены: {exampleCount} из {cams.length}</strong>
-                <p>Посмотрите снимки ниже. Чтобы заменить фото, нажмите на нужную камеру. Проверка ещё не запущена.</p>
+                <p>Посмотрите снимки ниже или замените нужное фото. Проверка ещё не запущена.</p>
               </div>
+              <button className="button primary" disabled={!count || !!duplicate || !date || !time} onClick={analyse}>
+                Запустить AI-анализ
+              </button>
             </div>
           )}
           {count < cams.length && (

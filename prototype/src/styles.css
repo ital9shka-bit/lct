@@ -1274,6 +1274,11 @@ tr:last-child td {
   font-size: 12px;
   line-height: 1.5;
 }
+.example-loaded .button {
+  flex: none;
+  align-self: center;
+  margin-left: auto;
+}
 .check-date-card {
   max-width: 760px;
   padding: 20px 0 25px;
@@ -1497,6 +1502,13 @@ tr:last-child td {
   }
   .example-prompt-copy .button {
     width: 100%;
+  }
+  .example-loaded {
+    flex-wrap: wrap;
+  }
+  .example-loaded .button {
+    width: 100%;
+    margin-left: 0;
   }
   .check-steps {
     gap: 20px;
