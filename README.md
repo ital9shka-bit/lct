@@ -4,7 +4,7 @@
 
 **Демо:** [pavelpetrov.tech](https://pavelpetrov.tech) · вход `demo/demo`
 
-**Презентация:** [СтройКонтроль — ЛЦТ 2026](presentation/СтройКонтроль_ЛЦТ2026.pptx)
+**Презентация:** [PowerPoint](presentation/СтройКонтроль_ЛЦТ2026.pptx) · [PDF для просмотра](presentation/СтройКонтроль_ЛЦТ2026.pdf)
 
 ## Что можно показать
 
